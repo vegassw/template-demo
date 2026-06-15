@@ -4,6 +4,7 @@ import { AppProvider } from "@/context/AppContext";
 import { Toaster } from "sonner";
 
 import RootSelector from "@/pages/RootSelector";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 import EcommerceLayout from "@/components/ecommerce/EcommerceLayout";
 import Home from "@/pages/ecommerce/Home";
@@ -30,6 +31,7 @@ function App() {
     <AppProvider>
       <div className="App font-body">
         <HashRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<RootSelector />} />
 
