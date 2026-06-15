@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, Outlet } from 'react-router-dom';
 import { ShoppingBag, Search, Menu, X, MessageCircle, Phone, Mail, MapPin, User } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
 
@@ -143,10 +143,10 @@ export const EcommerceFooter = () => (
   </footer>
 );
 
-const EcommerceLayout = ({ children }) => (
+const EcommerceLayout = () => (
   <div className="min-h-screen bg-white flex flex-col">
     <EcommerceHeader />
-    <main className="flex-1 pt-20">{children}</main>
+    <main className="flex-1 pt-20"><Outlet /></main>
     <EcommerceFooter />
   </div>
 );
