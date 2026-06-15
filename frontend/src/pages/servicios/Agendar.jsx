@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Check, Clock, Calendar as CalIcon, PawPrint, ArrowLeft, ArrowRight, CheckCircle2, PartyPopper } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
@@ -22,9 +22,17 @@ const formatDate = (iso) => {
 
 export default function Agendar() {
   const { services, addBooking } = useApp();
-  const [step, setStep] = useState(1); // 1 service, 2 date/time, 3 data, 4 done
-  const [data, setData] = useState({ serviceId: '', date: '', time: '', petName: '', petBreed: '', ownerName: '', phone: '' });
+  const [searchParams] = useSearchParams();
+  const preselectId = searchParams.get('servicio');
+  const hasPreselect = !!(preselectId && services.find((s) => s.id === preselectId));
+  const [step, setStep] = useState(hasPreselect ? 2 : 1); // 1 service, 2 date/time, 3 data, 4 done
+  const [data, setData] = useState({ serviceId: hasPreselect ? preselectId : '', date: '', time: '', petName: '', petBreed: '', ownerName: '', phone: '' });
   const [confirmed, setConfirmed] = useState(null);
+
+  // Scroll to top whenever the wizard step changes (mobile UX)
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, [step]);
 
   const service = services.find((s) => s.id === data.serviceId);
   const set = (k, v) => setData((d) => ({ ...d, [k]: v }));

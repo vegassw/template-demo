@@ -76,7 +76,7 @@ export default function ServiciosHome() {
                     <span className={`font-heading text-2xl ${svc.featured ? 'text-[#7BAE8F]' : 'text-[#2E3A35]'}`}>{formatCLP(svc.price)}</span>
                     <span className={`inline-flex items-center gap-1 text-xs ${svc.featured ? 'text-white/60' : 'text-[#5C6660]'}`}><Clock size={14} /> {svc.duration} min</span>
                   </div>
-                  <Link to="/servicios/agendar" className={`mt-5 block text-center py-2.5 rounded-full text-sm font-medium transition-colors ${svc.featured ? 'bg-[#7BAE8F] text-white hover:bg-[#6B9E7F]' : 'bg-white border border-[#E8E0D5] text-[#2E3A35] hover:border-[#7BAE8F]'}`} data-testid={`book-${svc.id}`}>
+                  <Link to={`/servicios/agendar?servicio=${svc.id}`} className={`mt-5 block text-center py-2.5 rounded-full text-sm font-medium transition-colors ${svc.featured ? 'bg-[#7BAE8F] text-white hover:bg-[#6B9E7F]' : 'bg-white border border-[#E8E0D5] text-[#2E3A35] hover:border-[#7BAE8F]'}`} data-testid={`book-${svc.id}`}>
                     Reservar
                   </Link>
                 </motion.div>
