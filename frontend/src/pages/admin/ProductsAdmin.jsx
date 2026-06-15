@@ -76,8 +76,8 @@ export default function ProductsAdmin() {
         <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Buscar producto o SKU…" className="w-full bg-white border border-gray-200 rounded-lg pl-10 pr-4 py-2.5 text-sm focus:border-[#C9A227] focus:outline-none" data-testid="product-search" />
       </div>
 
-      <div className="bg-white rounded-xl border border-gray-100 overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="bg-white rounded-xl border border-gray-100 overflow-x-auto">
+        <table className="w-full text-sm min-w-[520px]">
           <thead>
             <tr className="text-left text-gray-400 border-b border-gray-100">
               <th className="px-5 py-3 font-medium">Producto</th>

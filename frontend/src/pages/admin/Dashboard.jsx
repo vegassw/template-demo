@@ -46,12 +46,12 @@ export default function Dashboard() {
         <StatCard icon={AlertTriangle} label="Stock bajo" value={lowStock.length} accent="#EA580C" />
       </div>
 
-      <div className="bg-white rounded-xl border border-gray-100 overflow-hidden">
+      <div className="bg-white rounded-xl border border-gray-100 overflow-x-auto">
         <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
           <h2 className="font-heading text-lg">Productos con stock bajo</h2>
           <Link to="/ecommerce/admin/productos" className="text-sm text-[#C9A227] hover:underline">Ver todos</Link>
         </div>
-        <table className="w-full text-sm">
+        <table className="w-full text-sm min-w-[480px]">
           <thead>
             <tr className="text-left text-gray-400 border-b border-gray-50">
               <th className="px-6 py-3 font-medium">Producto</th>

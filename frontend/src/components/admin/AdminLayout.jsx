@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { LayoutDashboard, Package, Tags, Store, LogOut, Lock, ShieldCheck } from 'lucide-react';
+import { LayoutDashboard, Package, Tags, Store, LogOut, Lock, ShieldCheck, Menu, X } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
 import { toast } from 'sonner';
 
@@ -66,16 +66,28 @@ export default function AdminLayout() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f6f6f7] flex" data-testid="admin-layout">
+    <div className="min-h-screen bg-[#f6f6f7]" data-testid="admin-layout">
+      {/* Mobile top bar */}
+      <div className="md:hidden fixed top-0 left-0 right-0 z-40 bg-[#0c0c0e] text-white flex items-center justify-between px-4 h-16">
+        <span className="font-heading text-lg">AURUM <span className="text-[#C9A227]">& CO.</span></span>
+        <button onClick={() => setOpen(true)} className="p-2" data-testid="admin-menu-toggle" aria-label="Abrir menú"><Menu size={22} /></button>
+      </div>
+
+      {/* Overlay */}
+      {open && <div className="md:hidden fixed inset-0 bg-black/50 z-40" onClick={() => setOpen(false)} />}
+
       {/* Sidebar */}
-      <aside className="w-64 bg-[#0c0c0e] text-white flex flex-col fixed h-full">
-        <div className="p-6 border-b border-white/10">
-          <span className="font-heading text-xl">AURUM <span className="text-[#C9A227]">& CO.</span></span>
-          <p className="text-[10px] text-gray-500 tracking-[0.2em] uppercase mt-1">Admin Panel</p>
+      <aside className={`fixed top-0 left-0 h-full w-64 bg-[#0c0c0e] text-white flex flex-col z-50 transform transition-transform duration-300 md:translate-x-0 ${open ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className="p-6 border-b border-white/10 flex items-start justify-between">
+          <div>
+            <span className="font-heading text-xl">AURUM <span className="text-[#C9A227]">& CO.</span></span>
+            <p className="text-[10px] text-gray-500 tracking-[0.2em] uppercase mt-1">Admin Panel</p>
+          </div>
+          <button onClick={() => setOpen(false)} className="md:hidden p-1 text-gray-400" aria-label="Cerrar menú"><X size={20} /></button>
         </div>
         <nav className="flex-1 p-4 space-y-1">
           {navItems.map((item) => (
-            <NavLink key={item.to} to={item.to} end={item.end}
+            <NavLink key={item.to} to={item.to} end={item.end} onClick={() => setOpen(false)}
               className={({ isActive }) => `flex items-center gap-3 px-4 py-3 rounded-lg text-sm transition-colors ${isActive ? 'bg-[#C9A227] text-black font-medium' : 'text-gray-300 hover:bg-white/5'}`}
               data-testid={`admin-nav-${item.label.toLowerCase()}`}>
               <item.icon size={18} /> {item.label}
@@ -89,7 +101,7 @@ export default function AdminLayout() {
       </aside>
 
       {/* Content */}
-      <main className="flex-1 ml-64 p-8 md:p-10">
+      <main className="md:ml-64 p-5 pt-20 md:p-10 md:pt-10">
         <div className="flex items-center gap-2 text-xs text-gray-400 mb-6"><ShieldCheck size={14} className="text-[#C9A227]" /> Demo simulada — datos guardados en localStorage</div>
         <Outlet />
       </main>
