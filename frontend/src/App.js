@@ -20,6 +20,10 @@ import CategoriesAdmin from "@/pages/admin/CategoriesAdmin";
 import ServiciosLayout from "@/components/servicios/ServiciosLayout";
 import ServiciosHome from "@/pages/servicios/ServiciosHome";
 import Agendar from "@/pages/servicios/Agendar";
+import Tienda from "@/pages/servicios/Tienda";
+import PetProductDetail from "@/pages/servicios/PetProductDetail";
+import PetCart from "@/pages/servicios/PetCart";
+import PetCheckout from "@/pages/servicios/PetCheckout";
 
 function App() {
   return (
@@ -49,6 +53,10 @@ function App() {
             <Route path="/servicios" element={<ServiciosLayout />}>
               <Route index element={<ServiciosHome />} />
               <Route path="agendar" element={<Agendar />} />
+              <Route path="tienda" element={<Tienda />} />
+              <Route path="producto/:slug" element={<PetProductDetail />} />
+              <Route path="carrito" element={<PetCart />} />
+              <Route path="checkout" element={<PetCheckout />} />
             </Route>
 
             <Route path="*" element={<RootSelector />} />

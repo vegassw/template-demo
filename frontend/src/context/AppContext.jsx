@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { seedProducts, seedCategories, seedServices } from '@/data/seedData';
+import { seedProducts, seedCategories, seedServices, seedPetProducts, seedPetCategories } from '@/data/seedData';
 
 const STORAGE_KEYS = {
   products: 'aurum_products_v1',
@@ -7,6 +7,7 @@ const STORAGE_KEYS = {
   cart: 'aurum_cart_v1',
   auth: 'aurum_admin_auth_v1',
   bookings: 'patitas_bookings_v1',
+  petCart: 'patitas_cart_v1',
 };
 
 const AppContext = createContext(null);
@@ -35,14 +36,18 @@ export const AppProvider = ({ children }) => {
   const [cart, setCart] = useState(() => load(STORAGE_KEYS.cart, []));
   const [isAdmin, setIsAdmin] = useState(() => load(STORAGE_KEYS.auth, false));
   const [bookings, setBookings] = useState(() => load(STORAGE_KEYS.bookings, []));
-  // services are static for mockup
+  const [petCart, setPetCart] = useState(() => load(STORAGE_KEYS.petCart, []));
+  // services & pet products are static for mockup
   const [services] = useState(seedServices);
+  const [petProducts] = useState(seedPetProducts);
+  const [petCategories] = useState(seedPetCategories);
 
   useEffect(() => save(STORAGE_KEYS.products, products), [products]);
   useEffect(() => save(STORAGE_KEYS.categories, categories), [categories]);
   useEffect(() => save(STORAGE_KEYS.cart, cart), [cart]);
   useEffect(() => save(STORAGE_KEYS.auth, isAdmin), [isAdmin]);
   useEffect(() => save(STORAGE_KEYS.bookings, bookings), [bookings]);
+  useEffect(() => save(STORAGE_KEYS.petCart, petCart), [petCart]);
 
   // CART
   const addToCart = (product, qty = 1) => {
@@ -75,6 +80,23 @@ export const AppProvider = ({ children }) => {
 
   const cartTotal = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
   const cartCount = cart.reduce((sum, i) => sum + i.qty, 0);
+
+  // PET CART (PATITAS store)
+  const addToPetCart = (product, qty = 1) => {
+    setPetCart((prev) => {
+      const existing = prev.find((i) => i.id === product.id);
+      if (existing) return prev.map((i) => (i.id === product.id ? { ...i, qty: i.qty + qty } : i));
+      return [...prev, { id: product.id, name: product.name, price: product.salePrice ?? product.price, image: product.images?.[0] || '', qty }];
+    });
+  };
+  const updatePetQty = (id, qty) => {
+    if (qty < 1) { removeFromPetCart(id); return; }
+    setPetCart((prev) => prev.map((i) => (i.id === id ? { ...i, qty } : i)));
+  };
+  const removeFromPetCart = (id) => setPetCart((prev) => prev.filter((i) => i.id !== id));
+  const clearPetCart = () => setPetCart([]);
+  const petCartTotal = petCart.reduce((sum, i) => sum + i.price * i.qty, 0);
+  const petCartCount = petCart.reduce((sum, i) => sum + i.qty, 0);
 
   // PRODUCTS CRUD
   const saveProduct = (product) => {
@@ -123,14 +145,18 @@ export const AppProvider = ({ children }) => {
     setCategories(seedCategories);
     setCart([]);
     setBookings([]);
+    setPetCart([]);
   };
 
   return (
     <AppContext.Provider
       value={{
         products, categories, services, cart, isAdmin, bookings,
+        petProducts, petCategories, petCart,
         cartTotal, cartCount,
+        petCartTotal, petCartCount,
         addToCart, updateQty, removeFromCart, clearCart,
+        addToPetCart, updatePetQty, removeFromPetCart, clearPetCart,
         saveProduct, deleteProduct,
         saveCategory, deleteCategory,
         login, logout,

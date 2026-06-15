@@ -301,6 +301,73 @@ export const seedServices = [
   },
 ];
 
+// PATITAS & CO. — Tienda de productos para mascotas
+export const seedPetCategories = [
+  { id: 'pcat-alimento', name: 'Alimento', slug: 'alimento', order: 1 },
+  { id: 'pcat-juguetes', name: 'Juguetes', slug: 'juguetes', order: 2 },
+  { id: 'pcat-higiene', name: 'Higiene', slug: 'higiene', order: 3 },
+  { id: 'pcat-accesorios', name: 'Accesorios', slug: 'accesorios', order: 4 },
+];
+
+export const seedPetProducts = [
+  {
+    id: 'pp-001', name: 'Alimento Premium Adulto 10kg', slug: 'alimento-premium-adulto', sku: 'PAT-ALI-001',
+    description: 'Alimento balanceado super premium para perros adultos. Rico en proteína de pollo, sin colorantes ni conservantes artificiales.',
+    price: 38990, salePrice: 32990, stock: 30, categoryId: 'pcat-alimento', featured: true,
+    images: ['https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=900&q=85&auto=format'],
+    specs: [{ key: 'Peso', value: '10 kg' }, { key: 'Edad', value: 'Adulto' }, { key: 'Sabor', value: 'Pollo' }],
+  },
+  {
+    id: 'pp-002', name: 'Snacks Naturales Dentales', slug: 'snacks-dentales', sku: 'PAT-ALI-002',
+    description: 'Premios dentales que ayudan a reducir el sarro y refrescar el aliento. Ingredientes 100% naturales.',
+    price: 8990, salePrice: null, stock: 60, categoryId: 'pcat-alimento', featured: false,
+    images: ['https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?w=900&q=85&auto=format'],
+    specs: [{ key: 'Contenido', value: '20 unidades' }, { key: 'Tipo', value: 'Dental' }],
+  },
+  {
+    id: 'pp-003', name: 'Pelota Interactiva Resistente', slug: 'pelota-interactiva', sku: 'PAT-JUG-001',
+    description: 'Pelota de caucho natural ultra resistente, ideal para juegos de búsqueda y masticación. Flota en el agua.',
+    price: 6990, salePrice: 4990, stock: 80, categoryId: 'pcat-juguetes', featured: true,
+    images: ['https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=900&q=85&auto=format'],
+    specs: [{ key: 'Material', value: 'Caucho natural' }, { key: 'Tamaño', value: 'Mediano' }],
+  },
+  {
+    id: 'pp-004', name: 'Cuerda Mordedora Trenzada', slug: 'cuerda-mordedora', sku: 'PAT-JUG-002',
+    description: 'Juguete de cuerda de algodón trenzado para fortalecer dientes y encías mientras juega.',
+    price: 5490, salePrice: null, stock: 45, categoryId: 'pcat-juguetes', featured: false,
+    images: ['https://images.unsplash.com/photo-1593134257782-e89567b7718a?w=900&q=85&auto=format'],
+    specs: [{ key: 'Material', value: 'Algodón' }, { key: 'Largo', value: '30 cm' }],
+  },
+  {
+    id: 'pp-005', name: 'Shampoo Hipoalergénico 500ml', slug: 'shampoo-hipoalergenico', sku: 'PAT-HIG-001',
+    description: 'Shampoo suave con avena y aloe vera para pieles sensibles. pH balanceado, deja el pelaje brillante y perfumado.',
+    price: 12990, salePrice: 9990, stock: 35, categoryId: 'pcat-higiene', featured: true,
+    images: ['https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?w=900&q=85&auto=format'],
+    specs: [{ key: 'Volumen', value: '500 ml' }, { key: 'Fórmula', value: 'Avena + Aloe' }],
+  },
+  {
+    id: 'pp-006', name: 'Cepillo Quita Pelos Pro', slug: 'cepillo-quita-pelos', sku: 'PAT-HIG-002',
+    description: 'Cepillo de cerdas finas autolimpiante. Remueve el pelo muerto y previene nudos sin dañar la piel.',
+    price: 14990, salePrice: null, stock: 28, categoryId: 'pcat-higiene', featured: false,
+    images: ['https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=900&q=85&auto=format'],
+    specs: [{ key: 'Tipo', value: 'Autolimpiante' }, { key: 'Uso', value: 'Pelo corto y largo' }],
+  },
+  {
+    id: 'pp-007', name: 'Collar Ajustable Premium', slug: 'collar-ajustable', sku: 'PAT-ACC-001',
+    description: 'Collar de nylon resistente con hebilla de seguridad y costuras reforzadas. Cómodo y duradero.',
+    price: 9990, salePrice: 7990, stock: 50, categoryId: 'pcat-accesorios', featured: true,
+    images: ['https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=900&q=85&auto=format'],
+    specs: [{ key: 'Material', value: 'Nylon' }, { key: 'Tallas', value: 'S / M / L' }],
+  },
+  {
+    id: 'pp-008', name: 'Cama Ortopédica Acolchada', slug: 'cama-ortopedica', sku: 'PAT-ACC-002',
+    description: 'Cama suave con espuma de soporte para descanso reparador. Funda lavable y base antideslizante.',
+    price: 44990, salePrice: 36990, stock: 16, categoryId: 'pcat-accesorios', featured: true,
+    images: ['https://images.unsplash.com/photo-1591946614720-90a587da4a36?w=900&q=85&auto=format'],
+    specs: [{ key: 'Tamaño', value: '70x55 cm' }, { key: 'Funda', value: 'Lavable' }],
+  },
+];
+
 export const petSpaImages = {
   hero: 'https://images.unsplash.com/photo-1551902750-25d3d9c48dfe?w=1200&q=85&auto=format',
   bath: 'https://images.unsplash.com/photo-1536862542715-bba7273d6cac?w=900&q=85&auto=format',

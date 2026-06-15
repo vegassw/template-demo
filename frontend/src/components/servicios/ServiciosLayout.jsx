@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
-import { PawPrint, Menu, X, Phone, Instagram, MapPin } from 'lucide-react';
+import { PawPrint, Menu, X, Phone, Instagram, MapPin, ShoppingBag } from 'lucide-react';
+import { useApp } from '@/context/AppContext';
 
 export const ServiciosHeader = () => {
   const [open, setOpen] = useState(false);
+  const { petCartCount } = useApp();
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#FAF7F2]/90 backdrop-blur-md border-b border-[#E8E0D5]">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
@@ -12,20 +14,33 @@ export const ServiciosHeader = () => {
             <PawPrint size={26} className="text-[#7BAE8F]" />
             <span className="font-heading text-2xl text-[#2E3A35]">Patitas <span className="text-[#7BAE8F]">& Co.</span></span>
           </Link>
-          <nav className="hidden md:flex items-center gap-9">
-            <a href="#servicios" className="text-sm text-[#2E3A35] hover:text-[#7BAE8F] transition-colors tracking-wide">Servicios</a>
-            <a href="#galeria" className="text-sm text-[#2E3A35] hover:text-[#7BAE8F] transition-colors tracking-wide">Galería</a>
-            <a href="#nosotros" className="text-sm text-[#2E3A35] hover:text-[#7BAE8F] transition-colors tracking-wide">Nosotros</a>
+          <nav className="hidden md:flex items-center gap-8">
+            <Link to="/servicios" className="text-sm text-[#2E3A35] hover:text-[#7BAE8F] transition-colors tracking-wide" data-testid="nav-inicio-serv">Inicio</Link>
+            <Link to="/servicios/tienda" className="text-sm text-[#2E3A35] hover:text-[#7BAE8F] transition-colors tracking-wide" data-testid="nav-tienda">Tienda</Link>
+            <a href="/servicios#servicios" className="text-sm text-[#2E3A35] hover:text-[#7BAE8F] transition-colors tracking-wide">Servicios</a>
+            <Link to="/servicios/carrito" className="relative text-[#2E3A35] hover:text-[#7BAE8F] transition-colors" data-testid="pet-cart-link" aria-label="Carrito">
+              <ShoppingBag size={20} />
+              {petCartCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-[#7BAE8F] text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full">{petCartCount}</span>
+              )}
+            </Link>
             <Link to="/servicios/agendar" className="bg-[#7BAE8F] text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-[#6B9E7F] transition-colors" data-testid="nav-agendar">Agendar cita</Link>
           </nav>
-          <button onClick={() => setOpen(!open)} className="md:hidden p-2 text-[#2E3A35]">{open ? <X size={24} /> : <Menu size={24} />}</button>
+          <div className="flex items-center gap-3 md:hidden">
+            <Link to="/servicios/carrito" className="relative text-[#2E3A35]" data-testid="pet-cart-link-mobile" aria-label="Carrito">
+              <ShoppingBag size={22} />
+              {petCartCount > 0 && <span className="absolute -top-2 -right-2 bg-[#7BAE8F] text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full">{petCartCount}</span>}
+            </Link>
+            <button onClick={() => setOpen(!open)} className="p-2 text-[#2E3A35]">{open ? <X size={24} /> : <Menu size={24} />}</button>
+          </div>
         </div>
       </div>
       {open && (
         <div className="md:hidden bg-[#2E3A35] absolute top-20 left-0 right-0 p-6">
           <nav className="flex flex-col gap-4">
-            <a onClick={() => setOpen(false)} href="#servicios" className="text-white text-lg py-2 border-b border-white/10">Servicios</a>
-            <a onClick={() => setOpen(false)} href="#galeria" className="text-white text-lg py-2 border-b border-white/10">Galería</a>
+            <Link onClick={() => setOpen(false)} to="/servicios" className="text-white text-lg py-2 border-b border-white/10">Inicio</Link>
+            <Link onClick={() => setOpen(false)} to="/servicios/tienda" className="text-white text-lg py-2 border-b border-white/10">Tienda</Link>
+            <a onClick={() => setOpen(false)} href="/servicios#servicios" className="text-white text-lg py-2 border-b border-white/10">Servicios</a>
             <Link onClick={() => setOpen(false)} to="/servicios/agendar" className="text-[#7BAE8F] text-lg py-2 font-medium">Agendar cita →</Link>
           </nav>
         </div>

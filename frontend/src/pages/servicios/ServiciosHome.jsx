@@ -86,6 +86,23 @@ export default function ServiciosHome() {
         </div>
       </section>
 
+      {/* Store promo band */}
+      <section className="py-8">
+        <div className="max-w-6xl mx-auto px-6 md:px-10">
+          <div className="relative overflow-hidden rounded-[2rem] bg-[#2E3A35] px-8 py-10 md:px-12 md:py-12 flex flex-col md:flex-row items-center gap-8 justify-between">
+            <div className="pointer-events-none absolute -right-10 -top-10 w-56 h-56 rounded-full bg-[#7BAE8F]/20 blur-3xl" />
+            <div className="relative">
+              <p className="text-[#7BAE8F] text-sm tracking-[0.2em] uppercase font-medium mb-2">Nueva tienda online</p>
+              <h2 className="font-heading text-3xl md:text-4xl text-white mb-2">Alimento, juguetes y más</h2>
+              <p className="text-white/70 max-w-md">Compra todo lo que tu mascota necesita y recíbelo en casa. Pago en línea seguro.</p>
+            </div>
+            <Link to="/servicios/tienda" className="relative inline-flex items-center gap-2 bg-[#7BAE8F] text-white px-8 py-4 rounded-full text-sm font-semibold hover:bg-[#6B9E7F] transition-colors whitespace-nowrap" data-testid="home-tienda-cta">
+              Ir a la tienda <ArrowRight size={18} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Gallery */}
       <section id="galeria" className="py-20">
         <div className="max-w-6xl mx-auto px-6 md:px-10">
