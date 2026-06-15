@@ -26,8 +26,14 @@ Repositorio React con DOS plantillas 100% mockeadas (sin backend real, estado en
 ## Credenciales
 - Admin: `admin@demo.com` / `admin123`
 
+## Implementado (2026-06-15) — Modo tienda en PATITAS
+- ✅ PATITAS & CO. ahora tiene modo e-commerce además de servicios: catálogo de productos para mascotas (Alimento, Juguetes, Higiene, Accesorios).
+- ✅ Carrito **independiente** del de AURUM (clave localStorage `patitas_cart_v1` vs `aurum_cart_v1`), con quick-add, ficha de producto, carrito y checkout simulado Mercado Pago.
+- ✅ Header con "Tienda" + badge de carrito; banner promocional de tienda en la landing.
+- ✅ Probado por testing agent: 11/11 flujos nuevos + regresiones OK (iteration_2.json), 100%. Independencia de carritos verificada en ambos sentidos.
+
 ## Backlog / Próximos pasos (P2)
 - Vista de "Reservas" en algún panel para PATITAS (las bookings ya se guardan en localStorage).
+- Panel admin para la tienda de PATITAS (hoy los productos de mascotas son estáticos del seed).
 - Wishlist / favoritos en e-commerce.
 - Reseñas de clientes en fichas de producto.
-- Modo multi-idioma o selector de moneda.
