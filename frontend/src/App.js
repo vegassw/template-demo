@@ -1,5 +1,5 @@
 import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { AppProvider } from "@/context/AppContext";
 import { Toaster } from "sonner";
 
@@ -29,7 +29,7 @@ function App() {
   return (
     <AppProvider>
       <div className="App font-body">
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route path="/" element={<RootSelector />} />
 
@@ -62,7 +62,7 @@ function App() {
             <Route path="*" element={<RootSelector />} />
           </Routes>
           <Toaster position="top-center" richColors />
-        </BrowserRouter>
+        </HashRouter>
       </div>
     </AppProvider>
   );

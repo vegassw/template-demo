@@ -32,6 +32,14 @@ Repositorio React con DOS plantillas 100% mockeadas (sin backend real, estado en
 - ✅ Header con "Tienda" + badge de carrito; banner promocional de tienda en la landing.
 - ✅ Probado por testing agent: 11/11 flujos nuevos + regresiones OK (iteration_2.json), 100%. Independencia de carritos verificada en ambos sentidos.
 
+## Despliegue en GitHub Pages (2026-06-15)
+- App 100% estática (mock localStorage), ideal para GitHub Pages.
+- `App.js` usa **HashRouter** (evita 404 al recargar rutas internas en Pages).
+- `package.json` → `"homepage": "."` (assets relativos, funciona en cualquier subruta `usuario.github.io/repo/`).
+- Workflow CI/CD: `.github/workflows/deploy.yml` (build con yarn + deploy a Pages, `CI:false` para no fallar por warnings).
+- `frontend/public/.nojekyll` incluido. `index.html` con título/meta actualizados.
+- Pasos del usuario: Save to GitHub → repo Settings → Pages → Source = "GitHub Actions". El workflow corre en push a `main`.
+
 ## Backlog / Próximos pasos (P2)
 - Vista de "Reservas" en algún panel para PATITAS (las bookings ya se guardan en localStorage).
 - Panel admin para la tienda de PATITAS (hoy los productos de mascotas son estáticos del seed).
