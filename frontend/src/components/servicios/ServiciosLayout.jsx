@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { PawPrint, Menu, X, Phone, Instagram, MapPin, ShoppingBag } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
 
 export const ServiciosHeader = () => {
   const [open, setOpen] = useState(false);
   const { petCartCount } = useApp();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const goServicios = () => {
+    setOpen(false);
+    if (location.pathname === '/servicios') {
+      document.getElementById('servicios')?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/servicios');
+      setTimeout(() => document.getElementById('servicios')?.scrollIntoView({ behavior: 'smooth' }), 350);
+    }
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#FAF7F2]/90 backdrop-blur-md border-b border-[#E8E0D5]">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
@@ -17,7 +30,7 @@ export const ServiciosHeader = () => {
           <nav className="hidden md:flex items-center gap-8">
             <Link to="/servicios" className="text-sm text-[#2E3A35] hover:text-[#7BAE8F] transition-colors tracking-wide" data-testid="nav-inicio-serv">Inicio</Link>
             <Link to="/servicios/tienda" className="text-sm text-[#2E3A35] hover:text-[#7BAE8F] transition-colors tracking-wide" data-testid="nav-tienda">Tienda</Link>
-            <a href="/servicios#servicios" className="text-sm text-[#2E3A35] hover:text-[#7BAE8F] transition-colors tracking-wide">Servicios</a>
+            <button onClick={goServicios} className="text-sm text-[#2E3A35] hover:text-[#7BAE8F] transition-colors tracking-wide" data-testid="nav-servicios">Servicios</button>
             <Link to="/servicios/carrito" className="relative text-[#2E3A35] hover:text-[#7BAE8F] transition-colors" data-testid="pet-cart-link" aria-label="Carrito">
               <ShoppingBag size={20} />
               {petCartCount > 0 && (
@@ -40,7 +53,7 @@ export const ServiciosHeader = () => {
           <nav className="flex flex-col gap-4">
             <Link onClick={() => setOpen(false)} to="/servicios" className="text-white text-lg py-2 border-b border-white/10">Inicio</Link>
             <Link onClick={() => setOpen(false)} to="/servicios/tienda" className="text-white text-lg py-2 border-b border-white/10">Tienda</Link>
-            <a onClick={() => setOpen(false)} href="/servicios#servicios" className="text-white text-lg py-2 border-b border-white/10">Servicios</a>
+            <button onClick={goServicios} className="text-white text-lg py-2 border-b border-white/10 text-left">Servicios</button>
             <Link onClick={() => setOpen(false)} to="/servicios/agendar" className="text-[#7BAE8F] text-lg py-2 font-medium">Agendar cita →</Link>
           </nav>
         </div>
@@ -63,7 +76,7 @@ export const ServiciosFooter = () => (
         <div className="space-y-3">
           <h4 className="font-heading text-lg">Contacto</h4>
           <a href="tel:+56900000000" className="flex items-center gap-3 text-white/60 hover:text-[#7BAE8F] text-sm"><Phone size={16} /> +56 9 0000 0000</a>
-          <a href="#" className="flex items-center gap-3 text-white/60 hover:text-[#7BAE8F] text-sm"><Instagram size={16} /> @patitasyco</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white/60 hover:text-[#7BAE8F] text-sm"><Instagram size={16} /> @patitasyco</a>
           <span className="flex items-center gap-3 text-white/60 text-sm"><MapPin size={16} /> Providencia, Santiago</span>
         </div>
         <div className="space-y-3">

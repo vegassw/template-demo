@@ -31,9 +31,9 @@ export default function ServiciosHome() {
               <Link to="/servicios/agendar" className="inline-flex items-center justify-center gap-2 bg-[#7BAE8F] text-white px-8 py-4 rounded-full text-sm font-semibold hover:bg-[#6B9E7F] transition-colors" data-testid="hero-agendar-btn">
                 Agendar cita <ArrowRight size={18} />
               </Link>
-              <a href="#servicios" className="inline-flex items-center justify-center gap-2 border-2 border-[#2E3A35] text-[#2E3A35] px-8 py-4 rounded-full text-sm font-semibold hover:bg-[#2E3A35] hover:text-white transition-colors">
+              <button type="button" onClick={() => document.getElementById('servicios')?.scrollIntoView({ behavior: 'smooth' })} className="inline-flex items-center justify-center gap-2 border-2 border-[#2E3A35] text-[#2E3A35] px-8 py-4 rounded-full text-sm font-semibold hover:bg-[#2E3A35] hover:text-white transition-colors" data-testid="hero-ver-servicios">
                 Ver servicios
-              </a>
+              </button>
             </div>
             <div className="flex items-center gap-6 pt-2">
               <div className="flex items-center gap-1 text-[#7BAE8F]">{[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}</div>
