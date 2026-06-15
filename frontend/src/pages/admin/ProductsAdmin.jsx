@@ -4,7 +4,7 @@ import { useApp } from '@/context/AppContext';
 import { formatCLP, slugify } from '@/lib/format';
 import { toast } from 'sonner';
 import {
-  Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter,
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter,
 } from '@/components/ui/dialog';
 import {
   AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent,
@@ -121,7 +121,7 @@ export default function ProductsAdmin() {
       {/* Edit dialog */}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="max-w-lg max-h-[90vh] overflow-auto" data-testid="product-dialog">
-          <DialogHeader><DialogTitle>{editing.id ? 'Editar producto' : 'Nuevo producto'}</DialogTitle></DialogHeader>
+          <DialogHeader><DialogTitle>{editing.id ? 'Editar producto' : 'Nuevo producto'}</DialogTitle><DialogDescription>Completa los datos del producto. Se guardan en localStorage (demo).</DialogDescription></DialogHeader>
           <form onSubmit={handleSave} className="space-y-4">
             <div>
               <label className="text-sm font-medium text-gray-700">Nombre *</label>

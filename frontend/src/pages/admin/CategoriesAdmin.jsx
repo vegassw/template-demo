@@ -3,7 +3,7 @@ import { Plus, Pencil, Trash2 } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
 import { slugify } from '@/lib/format';
 import { toast } from 'sonner';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import {
   AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent,
   AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle,
@@ -82,7 +82,7 @@ export default function CategoriesAdmin() {
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="max-w-md" data-testid="category-dialog">
-          <DialogHeader><DialogTitle>{editing.id ? 'Editar categoría' : 'Nueva categoría'}</DialogTitle></DialogHeader>
+          <DialogHeader><DialogTitle>{editing.id ? 'Editar categoría' : 'Nueva categoría'}</DialogTitle><DialogDescription>Define el nombre y la imagen de la categoría (demo).</DialogDescription></DialogHeader>
           <form onSubmit={handleSave} className="space-y-4">
             <div>
               <label className="text-sm font-medium text-gray-700">Nombre *</label>
