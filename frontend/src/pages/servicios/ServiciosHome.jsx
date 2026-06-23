@@ -16,7 +16,7 @@ const iconMap = {
   shield: Shield, stethoscope: Stethoscope, syringe: Syringe, heart: Heart,
 };
 
-const BRANDS = ['Royal Canin', 'Hill\u2019s', 'Pro Plan', 'Eukanuba', 'Acana', 'Champion'];
+const BRANDS = ['Royal Canin', 'Hill\u2019s', 'Pro Plan', 'Acana', 'Bravery', 'Salvaje', 'Dogxtreme', 'Leonardo'];
 
 export default function ServiciosHome() {
   const { services, petProducts, petCategories } = useApp();
@@ -34,11 +34,11 @@ export default function ServiciosHome() {
   return (
     <Page data-testid="servicios-home">
       {/* Announcement bar */}
-      <div className="bg-[#2E3A35] text-white text-xs md:text-sm">
+      <div className="bg-[#134E4A] text-white text-xs md:text-sm">
         <div className="max-w-6xl mx-auto px-6 md:px-10 py-2.5 flex items-center justify-center gap-6 text-center">
-          <span className="flex items-center gap-2"><Truck size={14} className="text-[#7BAE8F]" /> Envío gratis sobre $30.000</span>
-          <span className="hidden sm:flex items-center gap-2"><ShieldCheck size={14} className="text-[#7BAE8F]" /> Veterinaria & Peluquería</span>
-          <span className="hidden md:flex items-center gap-2"><BadgePercent size={14} className="text-[#7BAE8F]" /> Hasta 40% OFF</span>
+          <span className="flex items-center gap-2"><Truck size={14} className="text-[#14B8A6]" /> Envío gratis sobre $30.000</span>
+          <span className="hidden sm:flex items-center gap-2"><ShieldCheck size={14} className="text-[#14B8A6]" /> Veterinaria & Peluquería</span>
+          <span className="hidden md:flex items-center gap-2"><BadgePercent size={14} className="text-[#14B8A6]" /> Hasta 40% OFF</span>
         </div>
       </div>
 
@@ -46,25 +46,25 @@ export default function ServiciosHome() {
       <section className="relative">
         <div className="max-w-6xl mx-auto px-6 md:px-10 py-12 md:py-20 grid md:grid-cols-2 gap-12 items-center">
           <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} className="space-y-6">
-            <span className="inline-flex items-center gap-2 bg-[#E8845E]/15 text-[#C56A45] px-4 py-2 rounded-full text-xs font-bold tracking-wide">
+            <span className="inline-flex items-center gap-2 bg-[#FB923C]/15 text-[#EA580C] px-4 py-2 rounded-full text-xs font-bold tracking-wide">
               <BadgePercent size={14} /> OFERTAS · Hasta 40% OFF
             </span>
-            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl text-[#2E3A35] leading-[1.08]">
-              Todo para tu mascota, <span className="text-[#7BAE8F]">en un solo lugar</span>
+            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl text-[#134E4A] leading-[1.08]">
+              Todo para tu mascota, <span className="text-[#14B8A6]">en un solo lugar</span>
             </h1>
             <p className="text-[#5C6660] text-lg leading-relaxed max-w-md">
               Veterinaria, peluquería y tienda de alimentos y accesorios. Compra en línea, agenda tu cita y cuida a tu engreído con lo mejor.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/servicios/tienda" className="inline-flex items-center justify-center gap-2 bg-[#7BAE8F] text-white px-8 py-4 rounded-full text-sm font-semibold hover:bg-[#6B9E7F] transition-colors" data-testid="hero-comprar-btn">
+              <Link to="/servicios/tienda" className="inline-flex items-center justify-center gap-2 bg-[#14B8A6] text-white px-8 py-4 rounded-full text-sm font-semibold hover:bg-[#0D9488] transition-colors" data-testid="hero-comprar-btn">
                 Comprar ahora <ArrowRight size={18} />
               </Link>
-              <Link to="/servicios/agendar" className="inline-flex items-center justify-center gap-2 border-2 border-[#2E3A35] text-[#2E3A35] px-8 py-4 rounded-full text-sm font-semibold hover:bg-[#2E3A35] hover:text-white transition-colors" data-testid="hero-agendar-btn">
+              <Link to="/servicios/agendar" className="inline-flex items-center justify-center gap-2 border-2 border-[#134E4A] text-[#134E4A] px-8 py-4 rounded-full text-sm font-semibold hover:bg-[#134E4A] hover:text-white transition-colors" data-testid="hero-agendar-btn">
                 Agendar cita
               </Link>
             </div>
             <div className="flex items-center gap-6 pt-2">
-              <div className="flex items-center gap-1 text-[#E8B45E]">{[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}</div>
+              <div className="flex items-center gap-1 text-[#FBBF24]">{[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}</div>
               <span className="text-sm text-[#5C6660]">+2.000 mascotas felices</span>
             </div>
           </motion.div>
@@ -73,8 +73,8 @@ export default function ServiciosHome() {
               <img src={petSpaImages.hero} alt="Mascotas felices" className="w-full h-full object-cover" />
             </div>
             <div className="absolute -bottom-5 -left-5 bg-white rounded-2xl shadow-lg p-5 flex items-center gap-3">
-              <div className="w-11 h-11 rounded-full bg-[#7BAE8F]/15 flex items-center justify-center"><Truck size={20} className="text-[#7BAE8F]" /></div>
-              <div><p className="font-heading text-base text-[#2E3A35] leading-none">Envío gratis</p><p className="text-xs text-[#5C6660]">sobre $30.000</p></div>
+              <div className="w-11 h-11 rounded-full bg-[#14B8A6]/15 flex items-center justify-center"><Truck size={20} className="text-[#14B8A6]" /></div>
+              <div><p className="font-heading text-base text-[#134E4A] leading-none">Envío gratis</p><p className="text-xs text-[#5C6660]">sobre $30.000</p></div>
             </div>
           </motion.div>
         </div>
@@ -89,11 +89,11 @@ export default function ServiciosHome() {
             { icon: Store, title: 'Tienda', desc: 'Alimentos, juguetes, higiene y accesorios.', to: '/servicios/tienda', cta: 'Comprar' },
           ].map((p, i) => (
             <motion.div key={p.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-              className="bg-white rounded-2xl border border-[#E8E0D5] p-6 flex flex-col" data-testid={`pillar-${p.title.toLowerCase().split(' ')[0]}`}>
-              <div className="w-12 h-12 rounded-xl bg-[#7BAE8F]/15 flex items-center justify-center mb-4"><p.icon size={24} className="text-[#7BAE8F]" /></div>
-              <h3 className="font-heading text-xl text-[#2E3A35] mb-1">{p.title}</h3>
+              className="bg-white rounded-2xl border border-[#CCEFE9] p-6 flex flex-col" data-testid={`pillar-${p.title.toLowerCase().split(' ')[0]}`}>
+              <div className="w-12 h-12 rounded-xl bg-[#14B8A6]/15 flex items-center justify-center mb-4"><p.icon size={24} className="text-[#14B8A6]" /></div>
+              <h3 className="font-heading text-xl text-[#134E4A] mb-1">{p.title}</h3>
               <p className="text-sm text-[#5C6660] mb-4 flex-1">{p.desc}</p>
-              <Link to={p.to} className="inline-flex items-center gap-1 text-[#7BAE8F] text-sm font-semibold hover:gap-2 transition-all">{p.cta} <ArrowRight size={15} /></Link>
+              <Link to={p.to} className="inline-flex items-center gap-1 text-[#14B8A6] text-sm font-semibold hover:gap-2 transition-all">{p.cta} <ArrowRight size={15} /></Link>
             </motion.div>
           ))}
         </div>
@@ -104,10 +104,10 @@ export default function ServiciosHome() {
         <div className="max-w-6xl mx-auto px-6 md:px-10">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <p className="text-[#7BAE8F] text-sm tracking-[0.2em] uppercase font-medium mb-2">Compra por categoría</p>
-              <h2 className="font-heading text-3xl md:text-4xl text-[#2E3A35]">Explora la tienda</h2>
+              <p className="text-[#14B8A6] text-sm tracking-[0.2em] uppercase font-medium mb-2">Compra por categoría</p>
+              <h2 className="font-heading text-3xl md:text-4xl text-[#134E4A]">Explora la tienda</h2>
             </div>
-            <Link to="/servicios/tienda" className="hidden md:inline-flex items-center gap-1 text-[#7BAE8F] text-sm font-semibold hover:gap-2 transition-all">Ver todo <ArrowRight size={15} /></Link>
+            <Link to="/servicios/tienda" className="hidden md:inline-flex items-center gap-1 text-[#14B8A6] text-sm font-semibold hover:gap-2 transition-all">Ver todo <ArrowRight size={15} /></Link>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
             {petCategories.map((c, i) => (
@@ -128,16 +128,16 @@ export default function ServiciosHome() {
         <div className="max-w-6xl mx-auto px-6 md:px-10">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <p className="text-[#7BAE8F] text-sm tracking-[0.2em] uppercase font-medium mb-2">Los favoritos</p>
-              <h2 className="font-heading text-3xl md:text-4xl text-[#2E3A35]">Más vendidos</h2>
+              <p className="text-[#14B8A6] text-sm tracking-[0.2em] uppercase font-medium mb-2">Los favoritos</p>
+              <h2 className="font-heading text-3xl md:text-4xl text-[#134E4A]">Más vendidos</h2>
             </div>
-            <Link to="/servicios/tienda" className="hidden md:inline-flex items-center gap-1 text-[#7BAE8F] text-sm font-semibold hover:gap-2 transition-all">Ver tienda <ArrowRight size={15} /></Link>
+            <Link to="/servicios/tienda" className="hidden md:inline-flex items-center gap-1 text-[#14B8A6] text-sm font-semibold hover:gap-2 transition-all">Ver tienda <ArrowRight size={15} /></Link>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
             {featured.map((p, i) => <PetProductCard key={p.id} product={p} index={i} />)}
           </div>
           <div className="text-center mt-8 md:hidden">
-            <Link to="/servicios/tienda" className="inline-flex items-center gap-2 bg-[#7BAE8F] text-white px-7 py-3 rounded-full text-sm font-semibold">Ver toda la tienda <ArrowRight size={16} /></Link>
+            <Link to="/servicios/tienda" className="inline-flex items-center gap-2 bg-[#14B8A6] text-white px-7 py-3 rounded-full text-sm font-semibold">Ver toda la tienda <ArrowRight size={16} /></Link>
           </div>
         </div>
       </section>
@@ -148,7 +148,7 @@ export default function ServiciosHome() {
           <p className="text-center text-[#5C6660] text-sm mb-6">Trabajamos con las mejores marcas</p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             {BRANDS.map((b) => (
-              <span key={b} className="bg-white border border-[#E8E0D5] rounded-full px-5 py-2.5 text-sm font-heading text-[#2E3A35]">{b}</span>
+              <span key={b} className="bg-white border border-[#CCEFE9] rounded-full px-5 py-2.5 text-sm font-heading text-[#134E4A]">{b}</span>
             ))}
           </div>
         </div>
@@ -157,14 +157,14 @@ export default function ServiciosHome() {
       {/* Promo band */}
       <section className="py-8">
         <div className="max-w-6xl mx-auto px-6 md:px-10">
-          <div className="relative overflow-hidden rounded-[2rem] bg-[#2E3A35] px-8 py-10 md:px-12 md:py-12 flex flex-col md:flex-row items-center gap-8 justify-between">
-            <div className="pointer-events-none absolute -right-10 -top-10 w-56 h-56 rounded-full bg-[#7BAE8F]/20 blur-3xl" />
+          <div className="relative overflow-hidden rounded-[2rem] bg-[#134E4A] px-8 py-10 md:px-12 md:py-12 flex flex-col md:flex-row items-center gap-8 justify-between">
+            <div className="pointer-events-none absolute -right-10 -top-10 w-56 h-56 rounded-full bg-[#14B8A6]/20 blur-3xl" />
             <div className="relative">
-              <p className="text-[#7BAE8F] text-sm tracking-[0.2em] uppercase font-medium mb-2">Primera compra</p>
+              <p className="text-[#14B8A6] text-sm tracking-[0.2em] uppercase font-medium mb-2">Primera compra</p>
               <h2 className="font-heading text-3xl md:text-4xl text-white mb-2">Envío gratis sobre $30.000</h2>
               <p className="text-white/70 max-w-md">Recibe alimentos y productos en la puerta de tu casa. Pago en línea 100% seguro.</p>
             </div>
-            <Link to="/servicios/tienda" className="relative inline-flex items-center gap-2 bg-[#7BAE8F] text-white px-8 py-4 rounded-full text-sm font-semibold hover:bg-[#6B9E7F] transition-colors whitespace-nowrap" data-testid="home-tienda-cta">
+            <Link to="/servicios/tienda" className="relative inline-flex items-center gap-2 bg-[#14B8A6] text-white px-8 py-4 rounded-full text-sm font-semibold hover:bg-[#0D9488] transition-colors whitespace-nowrap" data-testid="home-tienda-cta">
               Ir a la tienda <ArrowRight size={18} />
             </Link>
           </div>
@@ -175,16 +175,16 @@ export default function ServiciosHome() {
       <section id="servicios" className="py-14 bg-white">
         <div className="max-w-6xl mx-auto px-6 md:px-10">
           <div className="text-center mb-10">
-            <p className="text-[#7BAE8F] text-sm tracking-[0.2em] uppercase mb-3 font-medium">Servicios profesionales</p>
-            <h2 className="font-heading text-3xl md:text-4xl text-[#2E3A35]">Veterinaria & Peluquería</h2>
+            <p className="text-[#14B8A6] text-sm tracking-[0.2em] uppercase mb-3 font-medium">Servicios profesionales</p>
+            <h2 className="font-heading text-3xl md:text-4xl text-[#134E4A]">Veterinaria & Peluquería</h2>
           </div>
 
-          <h3 className="flex items-center gap-2 font-heading text-xl text-[#2E3A35] mb-5"><Stethoscope size={20} className="text-[#7BAE8F]" /> Veterinaria</h3>
+          <h3 className="flex items-center gap-2 font-heading text-xl text-[#134E4A] mb-5"><Stethoscope size={20} className="text-[#14B8A6]" /> Veterinaria</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
             {vetServices.map((svc, i) => <ServiceCard key={svc.id} svc={svc} i={i} />)}
           </div>
 
-          <h3 className="flex items-center gap-2 font-heading text-xl text-[#2E3A35] mb-5"><Scissors size={20} className="text-[#7BAE8F]" /> Peluquería & Spa</h3>
+          <h3 className="flex items-center gap-2 font-heading text-xl text-[#134E4A] mb-5"><Scissors size={20} className="text-[#14B8A6]" /> Peluquería & Spa</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {groomServices.map((svc, i) => <ServiceCard key={svc.id} svc={svc} i={i} />)}
           </div>
@@ -195,8 +195,8 @@ export default function ServiciosHome() {
       <section id="galeria" className="py-14">
         <div className="max-w-6xl mx-auto px-6 md:px-10">
           <div className="text-center mb-10">
-            <p className="text-[#7BAE8F] text-sm tracking-[0.2em] uppercase mb-3 font-medium">Galería</p>
-            <h2 className="font-heading text-3xl md:text-4xl text-[#2E3A35]">Momentos felices</h2>
+            <p className="text-[#14B8A6] text-sm tracking-[0.2em] uppercase mb-3 font-medium">Galería</p>
+            <h2 className="font-heading text-3xl md:text-4xl text-[#134E4A]">Momentos felices</h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[petSpaImages.bath, petSpaImages.grooming, petSpaImages.gallery1, petSpaImages.gallery2, petSpaImages.gallery3, petSpaImages.staff, petSpaImages.hero, petSpaImages.bath].slice(0, 8).map((img, i) => (
@@ -216,15 +216,15 @@ export default function ServiciosHome() {
             <img src={petSpaImages.staff} alt="Nuestro equipo" className="w-full h-full object-cover" />
           </div>
           <div className="space-y-5">
-            <p className="text-[#7BAE8F] text-sm tracking-[0.2em] uppercase font-medium">Sobre nosotros</p>
-            <h2 className="font-heading text-3xl md:text-4xl text-[#2E3A35]">Profesionales que aman a los animales</h2>
+            <p className="text-[#14B8A6] text-sm tracking-[0.2em] uppercase font-medium">Sobre nosotros</p>
+            <h2 className="font-heading text-3xl md:text-4xl text-[#134E4A]">Profesionales que aman a los animales</h2>
             <p className="text-[#5C6660] leading-relaxed">Veterinarios y peluqueros certificados que tratan a cada mascota con paciencia y cariño. Productos hipoalergénicos y un ambiente libre de estrés.</p>
             <div className="grid grid-cols-3 gap-4 pt-2">
               {[['10+', 'Años'], ['8', 'Especialistas'], ['100%', 'Clientes felices']].map(([n, l]) => (
-                <div key={l}><p className="font-heading text-3xl text-[#7BAE8F]">{n}</p><p className="text-xs text-[#5C6660] mt-1">{l}</p></div>
+                <div key={l}><p className="font-heading text-3xl text-[#14B8A6]">{n}</p><p className="text-xs text-[#5C6660] mt-1">{l}</p></div>
               ))}
             </div>
-            <Link to="/servicios/agendar" className="inline-flex items-center gap-2 bg-[#7BAE8F] text-white px-8 py-4 rounded-full text-sm font-semibold hover:bg-[#6B9E7F] transition-colors mt-2">
+            <Link to="/servicios/agendar" className="inline-flex items-center gap-2 bg-[#14B8A6] text-white px-8 py-4 rounded-full text-sm font-semibold hover:bg-[#0D9488] transition-colors mt-2">
               Agendar una cita <ArrowRight size={18} />
             </Link>
           </div>
@@ -238,19 +238,19 @@ const ServiceCard = ({ svc, i }) => {
   const Icon = iconMap[svc.icon] || Sparkles;
   return (
     <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: (i % 4) * 0.06 }}
-      className={`relative rounded-2xl p-6 border transition-all hover:shadow-md ${svc.featured ? 'bg-[#2E3A35] border-[#2E3A35] text-white' : 'bg-[#FAF7F2] border-[#E8E0D5]'}`}
+      className={`relative rounded-2xl p-6 border transition-all hover:shadow-md ${svc.featured ? 'bg-[#134E4A] border-[#134E4A] text-white' : 'bg-[#F0FDFA] border-[#CCEFE9]'}`}
       data-testid={`service-card-${svc.id}`}>
-      {svc.featured && <span className="absolute top-5 right-5 bg-[#7BAE8F] text-white text-[10px] px-3 py-1 rounded-full font-medium tracking-wide">POPULAR</span>}
-      <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${svc.featured ? 'bg-[#7BAE8F]' : 'bg-[#7BAE8F]/15'}`}>
-        <Icon size={20} className={svc.featured ? 'text-white' : 'text-[#7BAE8F]'} />
+      {svc.featured && <span className="absolute top-5 right-5 bg-[#14B8A6] text-white text-[10px] px-3 py-1 rounded-full font-medium tracking-wide">POPULAR</span>}
+      <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${svc.featured ? 'bg-[#14B8A6]' : 'bg-[#14B8A6]/15'}`}>
+        <Icon size={20} className={svc.featured ? 'text-white' : 'text-[#14B8A6]'} />
       </div>
-      <h3 className={`font-heading text-lg mb-2 ${svc.featured ? 'text-white' : 'text-[#2E3A35]'}`}>{svc.name}</h3>
+      <h3 className={`font-heading text-lg mb-2 ${svc.featured ? 'text-white' : 'text-[#134E4A]'}`}>{svc.name}</h3>
       <p className={`text-sm leading-relaxed mb-4 ${svc.featured ? 'text-white/70' : 'text-[#5C6660]'}`}>{svc.description}</p>
       <div className="flex items-center justify-between">
-        <span className={`font-heading text-xl ${svc.featured ? 'text-[#7BAE8F]' : 'text-[#2E3A35]'}`}>{formatCLP(svc.price)}</span>
+        <span className={`font-heading text-xl ${svc.featured ? 'text-[#14B8A6]' : 'text-[#134E4A]'}`}>{formatCLP(svc.price)}</span>
         <span className={`inline-flex items-center gap-1 text-xs ${svc.featured ? 'text-white/60' : 'text-[#5C6660]'}`}><Clock size={14} /> {svc.duration} min</span>
       </div>
-      <Link to={`/servicios/agendar?servicio=${svc.id}`} className={`mt-4 block text-center py-2.5 rounded-full text-sm font-medium transition-colors ${svc.featured ? 'bg-[#7BAE8F] text-white hover:bg-[#6B9E7F]' : 'bg-white border border-[#E8E0D5] text-[#2E3A35] hover:border-[#7BAE8F]'}`} data-testid={`book-${svc.id}`}>
+      <Link to={`/servicios/agendar?servicio=${svc.id}`} className={`mt-4 block text-center py-2.5 rounded-full text-sm font-medium transition-colors ${svc.featured ? 'bg-[#14B8A6] text-white hover:bg-[#0D9488]' : 'bg-white border border-[#CCEFE9] text-[#134E4A] hover:border-[#14B8A6]'}`} data-testid={`book-${svc.id}`}>
         Reservar
       </Link>
     </motion.div>
