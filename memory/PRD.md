@@ -40,6 +40,12 @@ Repositorio React con DOS plantillas 100% mockeadas (sin backend real, estado en
 - `frontend/public/.nojekyll` incluido. `index.html` con título/meta actualizados.
 - Pasos del usuario: Save to GitHub → repo Settings → Pages → Source = "GitHub Actions". El workflow corre en push a `main`.
 
+## Implementado (2026-06-15) — PATITAS estilo PetMax (centro integral)
+- ✅ Rediseño de la home de PATITAS inspirado en petmax.ca: barra de anuncios (envío gratis), hero de ofertas, 3 pilares (Veterinaria · Peluquería & Spa · Tienda), tiles de categorías, "Más vendidos" con rating + badges de descuento, franja de marcas, banda promocional y servicios agrupados (Veterinaria / Peluquería).
+- ✅ Agregados servicios de **Veterinaria** (consulta, vacunación, desparasitación, control sano) en seedServices con `category`.
+- ✅ PetProductCard mejorado: estrellas de rating, reviews y badge de % descuento / "Más vendido" (acento coral #E8845E).
+- ✅ Todo sigue 100% mock (carrito + checkout Mercado Pago simulado intactos).
+
 ## Backlog / Próximos pasos (P2)
 - Vista de "Reservas" en algún panel para PATITAS (las bookings ya se guardan en localStorage).
 - Panel admin para la tienda de PATITAS (hoy los productos de mascotas son estáticos del seed).

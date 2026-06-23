@@ -299,6 +299,26 @@ export const seedServices = [
     description: 'Baño medicado especial con productos antiparasitarios certificados.',
     icon: 'shield',
   },
+  {
+    id: 'svc-101', name: 'Consulta Veterinaria', duration: 30, price: 20000,
+    description: 'Evaluación general de salud con veterinario titulado. Diagnóstico y plan de tratamiento.',
+    icon: 'stethoscope', category: 'veterinaria',
+  },
+  {
+    id: 'svc-102', name: 'Vacunación', duration: 20, price: 15000,
+    description: 'Aplicación de vacunas según calendario. Incluye registro en carnet sanitario.',
+    icon: 'syringe', category: 'veterinaria',
+  },
+  {
+    id: 'svc-103', name: 'Desparasitación', duration: 15, price: 12000,
+    description: 'Tratamiento antiparasitario interno y externo con productos certificados.',
+    icon: 'shield', category: 'veterinaria',
+  },
+  {
+    id: 'svc-104', name: 'Control Sano', duration: 30, price: 18000,
+    description: 'Chequeo preventivo periódico: peso, dientes, piel y signos vitales.',
+    icon: 'heart', category: 'veterinaria',
+  },
 ];
 
 // PATITAS & CO. — Tienda de productos para mascotas
