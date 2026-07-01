@@ -26,6 +26,12 @@ import PetProductDetail from "@/pages/servicios/PetProductDetail";
 import PetCart from "@/pages/servicios/PetCart";
 import PetCheckout from "@/pages/servicios/PetCheckout";
 
+import EnvialoLayout from "@/components/envialo/EnvialoLayout";
+import EnvialoHome from "@/pages/envialo/EnvialoHome";
+import SendMoney from "@/pages/envialo/SendMoney";
+import Tracking from "@/pages/envialo/Tracking";
+import EnvialoAdmin from "@/pages/envialo/EnvialoAdmin";
+
 function App() {
   return (
     <AppProvider>
@@ -59,6 +65,14 @@ function App() {
               <Route path="producto/:slug" element={<PetProductDetail />} />
               <Route path="carrito" element={<PetCart />} />
               <Route path="checkout" element={<PetCheckout />} />
+            </Route>
+
+            {/* Money transfer template (Envíalo) */}
+            <Route path="/envialo/admin" element={<EnvialoAdmin />} />
+            <Route path="/envialo" element={<EnvialoLayout />}>
+              <Route index element={<EnvialoHome />} />
+              <Route path="enviar" element={<SendMoney />} />
+              <Route path="seguimiento" element={<Tracking />} />
             </Route>
 
             <Route path="*" element={<RootSelector />} />

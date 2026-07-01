@@ -418,3 +418,37 @@ export const petSpaImages = {
   gallery2: 'https://images.unsplash.com/photo-1560743641-3914f2c45636?w=800&q=85&auto=format',
   gallery3: 'https://images.unsplash.com/photo-1547955326-921fec152788?w=800&q=85&auto=format',
 };
+
+// ================= ENVÍALO — Envío de dinero (mock) =================
+// rate = unidades de moneda destino por 1 CLP (ficticio)
+export const seedCountries = [
+  { code: 'PE', name: 'Perú', flag: '🇵🇪', currency: 'PEN', symbol: 'S/', rate: 0.0039, methods: ['bank', 'cash'] },
+  { code: 'CO', name: 'Colombia', flag: '🇨🇴', currency: 'COP', symbol: '$', rate: 4.2, methods: ['bank', 'cash', 'wallet'] },
+  { code: 'VE', name: 'Venezuela', flag: '🇻🇪', currency: 'VES', symbol: 'Bs', rate: 0.135, methods: ['pagomovil', 'bank', 'cash'] },
+  { code: 'BO', name: 'Bolivia', flag: '🇧🇴', currency: 'BOB', symbol: 'Bs', rate: 0.0072, methods: ['bank', 'cash'] },
+  { code: 'AR', name: 'Argentina', flag: '🇦🇷', currency: 'ARS', symbol: '$', rate: 1.05, methods: ['bank', 'cash'] },
+  { code: 'MX', name: 'México', flag: '🇲🇽', currency: 'MXN', symbol: '$', rate: 0.019, methods: ['bank', 'cash', 'wallet'] },
+];
+
+export const payoutMethods = {
+  bank: { id: 'bank', label: 'Depósito bancario', desc: 'Directo a la cuenta del destinatario', icon: 'Landmark', time: '1-2 horas' },
+  cash: { id: 'cash', label: 'Retiro en efectivo', desc: 'Retiro en puntos autorizados', icon: 'Banknote', time: '15 minutos' },
+  wallet: { id: 'wallet', label: 'Billetera móvil', desc: 'A billetera digital del destinatario', icon: 'Wallet', time: 'Minutos' },
+  pagomovil: { id: 'pagomovil', label: 'Pago Móvil', desc: 'Transferencia instantánea con teléfono', icon: 'Smartphone', time: 'Segundos' },
+};
+
+export const venezuelaBanks = [
+  { code: '0102', name: 'Banco de Venezuela' },
+  { code: '0105', name: 'Mercantil' },
+  { code: '0134', name: 'Banesco' },
+  { code: '0108', name: 'BBVA Provincial' },
+  { code: '0163', name: 'Banco del Tesoro' },
+  { code: '0172', name: 'Bancamiga' },
+  { code: '0114', name: 'Bancaribe' },
+];
+
+export const paymentMethods = [
+  { id: 'transferencia', label: 'Transferencia bancaria', desc: 'Transfiere desde tu banco', icon: 'Landmark' },
+  { id: 'mercadopago', label: 'Pago en línea', desc: 'Tarjeta o saldo Mercado Pago', icon: 'CreditCard' },
+  { id: 'efectivo', label: 'Pago en efectivo', desc: 'Paga en puntos autorizados', icon: 'Banknote' },
+];

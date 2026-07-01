@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ShoppingBag, Scissors, ArrowRight } from 'lucide-react';
+import { ShoppingBag, Scissors, ArrowRight, Send } from 'lucide-react';
 
 const DemoCard = ({ to, badge, title, subtitle, desc, image, accent, cta, testid }) => (
   <motion.div
@@ -55,13 +55,13 @@ export default function RootSelector() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           <DemoCard
             to="/ecommerce"
             badge="E-commerce"
             subtitle="Tienda online"
             title="AURUM & CO."
-            desc="Catálogo de productos premium, carrito de compras, checkout simulado y panel de administración completo."
+            desc="Catálogo premium, carrito, checkout simulado y panel de administración completo."
             image="https://images.unsplash.com/photo-1760072513442-9872656c1b07?w=900&q=85&auto=format"
             accent="#C9A227"
             cta="Entrar a la tienda"
@@ -69,20 +69,32 @@ export default function RootSelector() {
           />
           <DemoCard
             to="/servicios"
-            badge="Servicios"
-            subtitle="Peluquería canina · Spa"
+            badge="Mascotas"
+            subtitle="Veterinaria · Peluquería · Tienda"
             title="PATITAS & CO."
-            desc="Landing minimalista, catálogo de servicios de spa para mascotas y agendamiento de citas en pocos pasos."
+            desc="Centro integral de mascotas: servicios, agenda de citas y tienda con carrito y pago."
             image="https://images.unsplash.com/photo-1591946614720-90a587da4a36?w=900&q=85&auto=format"
-            accent="#7BAE8F"
+            accent="#14B8A6"
             cta="Ver servicios"
             testid="demo-servicios"
           />
+          <DemoCard
+            to="/envialo"
+            badge="Fintech"
+            subtitle="Envío de dinero · Pago móvil"
+            title="ENVÍALO"
+            desc="Envía dinero a Latinoamérica en minutos. Cotizador, seguimiento y dashboard admin."
+            image="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=900&q=85&auto=format"
+            accent="#00B37E"
+            cta="Enviar dinero"
+            testid="demo-envialo"
+          />
         </div>
 
-        <div className="mt-14 flex items-center justify-center gap-6 text-gray-500 text-xs">
+        <div className="mt-14 flex flex-wrap items-center justify-center gap-6 text-gray-500 text-xs">
           <span className="inline-flex items-center gap-2"><ShoppingBag size={14} /> Carrito & checkout</span>
           <span className="inline-flex items-center gap-2"><Scissors size={14} /> Agenda de citas</span>
+          <span className="inline-flex items-center gap-2"><Send size={14} /> Envío de dinero</span>
         </div>
       </div>
     </div>

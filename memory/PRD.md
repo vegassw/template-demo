@@ -46,6 +46,16 @@ Repositorio React con DOS plantillas 100% mockeadas (sin backend real, estado en
 - ✅ PetProductCard mejorado: estrellas de rating, reviews y badge de % descuento / "Más vendido" (acento coral #E8845E).
 - ✅ Todo sigue 100% mock (carrito + checkout Mercado Pago simulado intactos).
 
+## Implementado (2026-07-01) — 3er template: ENVÍALO (envío de dinero, mock)
+- ✅ Tercer template fintech "Envíalo" (envío de dinero + Pago Móvil), 100% mock localStorage, diseño minimalista bancario (navy #0A2540 + menta #00B37E).
+- ✅ Home con **cotizador** (país destino + monto → tipo de cambio ficticio, comisión, total, monto recibido), franja de países y "cómo funciona".
+- ✅ Flujo de envío estilo Ria en 4 pasos: monto/país → método de entrega (depósito, efectivo, billetera, **Pago Móvil VE**) → datos del destinatario (dinámicos por método; Pago Móvil pide banco 4 dígitos + teléfono + cédula/RIF) → pago (Transferencia / Mercado Pago / Efectivo) → procesando → éxito con **N° de seguimiento**.
+- ✅ Página de **seguimiento** con timeline de estados (recibido → en proceso → pagado).
+- ✅ **Dashboard admin** (`/#/envialo/admin`, mismo login) con stats (total enviado, comisiones, envíos hoy), tabla de transacciones, cambio de estado y detalle.
+- ✅ Corredores desde Chile: Perú, Colombia, Venezuela, Bolivia, Argentina, México (tasas ficticias).
+- ✅ Selector raíz ahora con 3 tarjetas (AURUM, PATITAS, ENVÍALO).
+- Estado transferencias en localStorage `envialo_transfers_v1`.
+
 ## Backlog / Próximos pasos (P2)
 - Vista de "Reservas" en algún panel para PATITAS (las bookings ya se guardan en localStorage).
 - Panel admin para la tienda de PATITAS (hoy los productos de mascotas son estáticos del seed).

@@ -8,6 +8,7 @@ const STORAGE_KEYS = {
   auth: 'aurum_admin_auth_v1',
   bookings: 'patitas_bookings_v1',
   petCart: 'patitas_cart_v1',
+  transfers: 'envialo_transfers_v1',
 };
 
 const AppContext = createContext(null);
@@ -37,6 +38,7 @@ export const AppProvider = ({ children }) => {
   const [isAdmin, setIsAdmin] = useState(() => load(STORAGE_KEYS.auth, false));
   const [bookings, setBookings] = useState(() => load(STORAGE_KEYS.bookings, []));
   const [petCart, setPetCart] = useState(() => load(STORAGE_KEYS.petCart, []));
+  const [transfers, setTransfers] = useState(() => load(STORAGE_KEYS.transfers, []));
   // services & pet products are static for mockup
   const [services] = useState(seedServices);
   const [petProducts] = useState(seedPetProducts);
@@ -48,6 +50,7 @@ export const AppProvider = ({ children }) => {
   useEffect(() => save(STORAGE_KEYS.auth, isAdmin), [isAdmin]);
   useEffect(() => save(STORAGE_KEYS.bookings, bookings), [bookings]);
   useEffect(() => save(STORAGE_KEYS.petCart, petCart), [petCart]);
+  useEffect(() => save(STORAGE_KEYS.transfers, transfers), [transfers]);
 
   // CART
   const addToCart = (product, qty = 1) => {
@@ -146,13 +149,28 @@ export const AppProvider = ({ children }) => {
     setCart([]);
     setBookings([]);
     setPetCart([]);
+    setTransfers([]);
   };
+
+  // TRANSFERS (ENVÍALO)
+  const addTransfer = (data) => {
+    const t = {
+      id: `ENV-${Date.now().toString().slice(-8)}`,
+      ...data,
+      status: 'en_proceso',
+      createdAt: new Date().toISOString(),
+    };
+    setTransfers((prev) => [t, ...prev]);
+    return t;
+  };
+  const updateTransferStatus = (id, status) =>
+    setTransfers((prev) => prev.map((t) => (t.id === id ? { ...t, status } : t)));
 
   return (
     <AppContext.Provider
       value={{
         products, categories, services, cart, isAdmin, bookings,
-        petProducts, petCategories, petCart,
+        petProducts, petCategories, petCart, transfers,
         cartTotal, cartCount,
         petCartTotal, petCartCount,
         addToCart, updateQty, removeFromCart, clearCart,
@@ -161,6 +179,7 @@ export const AppProvider = ({ children }) => {
         saveCategory, deleteCategory,
         login, logout,
         addBooking,
+        addTransfer, updateTransferStatus,
         resetDemoData,
       }}
     >
