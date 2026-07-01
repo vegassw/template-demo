@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { toast } from 'sonner';
 import {
   Check, ArrowLeft, ArrowRight, ChevronDown, Loader2, CheckCircle2, ShieldCheck,
-  Landmark, Banknote, Wallet, Smartphone, CreditCard, Copy,
+  Landmark, Banknote, Wallet, Smartphone, CreditCard, Copy, Receipt, MapPin, Clock,
 } from 'lucide-react';
-import { seedCountries, payoutMethods, venezuelaBanks, paymentMethods } from '@/data/seedData';
+import { seedCountries, payoutMethods, venezuelaBanks, paymentMethods, seedSucursales } from '@/data/seedData';
 import { useApp } from '@/context/AppContext';
 import { formatCLP } from '@/lib/format';
 import { Page } from '@/components/PageTransition';
@@ -57,6 +58,7 @@ export default function SendMoney() {
   };
 
   const handleConfirm = () => {
+    const isCash = payment === 'efectivo';
     setPhase('processing');
     setTimeout(() => {
       const t = addTransfer({
@@ -66,6 +68,8 @@ export default function SendMoney() {
         method, methodLabel: payoutMethods[method].label,
         recipient,
         payment, paymentLabel: paymentMethods.find((p) => p.id === payment).label,
+        status: isCash ? 'pendiente' : 'en_proceso',
+        paymentRef: isCash ? `PAG-${Date.now().toString().slice(-8)}` : null,
       });
       setConfirmed(t);
       setPhase('success');
@@ -87,6 +91,60 @@ export default function SendMoney() {
 
   // ---- Success ----
   if (phase === 'success' && confirmed) {
+    const isCash = confirmed.payment === 'efectivo';
+    const copyRef = (text) => { navigator.clipboard?.writeText(text); toast.success('Número copiado'); };
+
+    if (isCash) {
+      return (
+        <Page className="max-w-lg mx-auto px-6 py-12 md:py-14">
+          <motion.div initial={{ scale: 0.97, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} data-testid="send-success-cash">
+            <div className="text-center mb-6">
+              <div className="w-16 h-16 rounded-full bg-[#00B37E]/10 flex items-center justify-center mx-auto mb-5"><Receipt size={32} className="text-[#00B37E]" /></div>
+              <h1 className="text-2xl font-bold text-[#0A2540] mb-2">Genera tu pago en efectivo</h1>
+              <p className="text-[#5A6B85] text-sm">Lleva este número a una sucursal y paga el monto en efectivo. Una vez confirmado el pago, se realizará el envío a {confirmed.countryName}.</p>
+            </div>
+
+            {/* Payment reference */}
+            <div className="bg-[#0A2540] text-white rounded-2xl p-6 mb-5 text-center">
+              <p className="text-white/60 text-xs uppercase tracking-wide mb-2">Número de pago</p>
+              <div className="flex items-center justify-center gap-3">
+                <span className="font-mono text-2xl font-bold tracking-wider" data-testid="payment-ref">{confirmed.paymentRef}</span>
+                <button onClick={() => copyRef(confirmed.paymentRef)} className="text-white/70 hover:text-[#00B37E]" data-testid="copy-ref-btn" aria-label="Copiar"><Copy size={18} /></button>
+              </div>
+              <p className="text-white/80 text-sm mt-3">Monto a pagar: <b className="text-[#00B37E]">{formatCLP(confirmed.total)}</b></p>
+            </div>
+
+            {/* Sucursales */}
+            <div className="bg-white border border-[#E4E9F2] rounded-2xl p-5 mb-5">
+              <p className="font-semibold text-[#0A2540] mb-3 flex items-center gap-2"><MapPin size={17} className="text-[#00B37E]" /> Sucursales para pagar</p>
+              <div className="space-y-3">
+                {seedSucursales.map((s) => (
+                  <div key={s.name} className="flex items-start gap-3 pb-3 border-b border-[#F0F3F8] last:border-0 last:pb-0">
+                    <div className="w-8 h-8 rounded-lg bg-[#F6F8FB] flex items-center justify-center flex-shrink-0"><MapPin size={15} className="text-[#5A6B85]" /></div>
+                    <div>
+                      <p className="text-sm font-medium text-[#0A2540]">{s.name}</p>
+                      <p className="text-xs text-[#5A6B85]">{s.address}</p>
+                      <p className="text-xs text-[#9AA7BD] flex items-center gap-1 mt-0.5"><Clock size={11} /> {s.hours}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 mb-6 flex items-start gap-2">
+              <span className="w-2 h-2 rounded-full bg-amber-500 mt-1.5 flex-shrink-0" />
+              <p className="text-xs text-amber-800">Estado actual: <b>Pago pendiente</b>. El envío se ejecuta automáticamente al confirmar el pago en sucursal. N° de seguimiento: <b className="font-mono">{confirmed.id}</b></p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link to={`/envialo/seguimiento?codigo=${confirmed.id}`} className="flex-1 inline-flex items-center justify-center gap-2 bg-[#00B37E] text-white py-3.5 rounded-xl text-sm font-semibold hover:bg-[#009E6E] transition-colors" data-testid="go-tracking-btn">Seguir mi envío</Link>
+              <Link to="/envialo" className="flex-1 inline-flex items-center justify-center border border-[#E4E9F2] text-[#0A2540] py-3.5 rounded-xl text-sm font-semibold hover:bg-white transition-colors">Volver al inicio</Link>
+            </div>
+          </motion.div>
+        </Page>
+      );
+    }
+
     return (
       <Page className="min-h-[70vh] flex items-center justify-center px-6 py-16">
         <motion.div initial={{ scale: 0.96, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="text-center max-w-md w-full" data-testid="send-success">
@@ -258,7 +316,7 @@ export default function SendMoney() {
             {step < 4 ? (
               <button onClick={() => { if (step === 2) setRecipient({}); setStep(step + 1); }} disabled={!canNext()} className="inline-flex items-center gap-2 bg-[#00B37E] text-white px-7 py-3 rounded-xl text-sm font-semibold hover:bg-[#009E6E] transition-colors disabled:opacity-40" data-testid="next-btn">Continuar <ArrowRight size={16} /></button>
             ) : (
-              <button onClick={handleConfirm} disabled={!canNext()} className="inline-flex items-center gap-2 bg-[#0A2540] text-white px-7 py-3 rounded-xl text-sm font-semibold hover:bg-[#0B2A4A] transition-colors disabled:opacity-40" data-testid="confirm-send-btn">Pagar {formatCLP(total)}</button>
+              <button onClick={handleConfirm} disabled={!canNext()} className="inline-flex items-center gap-2 bg-[#0A2540] text-white px-7 py-3 rounded-xl text-sm font-semibold hover:bg-[#0B2A4A] transition-colors disabled:opacity-40" data-testid="confirm-send-btn">{payment === 'efectivo' ? 'Generar pago en efectivo' : `Pagar ${formatCLP(total)}`}</button>
             )}
           </div>
         </div>

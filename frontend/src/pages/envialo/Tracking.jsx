@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { Search, PackageCheck, Clock, Truck, CheckCircle2, XCircle } from 'lucide-react';
+import { Search, PackageCheck, Clock, Truck, CheckCircle2, XCircle, Receipt } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
 import { formatCLP } from '@/lib/format';
 import { Page } from '@/components/PageTransition';
 
 const nf = (n) => Number(n).toLocaleString('es-CL', { maximumFractionDigits: 2 });
 
-const STEPS = [
-  { key: 'recibido', label: 'Solicitud recibida', icon: PackageCheck },
-  { key: 'en_proceso', label: 'En proceso', icon: Truck },
-  { key: 'pagado', label: 'Pagado al destinatario', icon: CheckCircle2 },
-];
+const stepsFor = (t) => (t?.payment === 'efectivo'
+  ? [
+      { key: 'recibido', label: 'Pago pendiente en sucursal', icon: Receipt },
+      { key: 'en_proceso', label: 'En proceso', icon: Truck },
+      { key: 'pagado', label: 'Pagado al destinatario', icon: CheckCircle2 },
+    ]
+  : [
+      { key: 'recibido', label: 'Solicitud recibida', icon: PackageCheck },
+      { key: 'en_proceso', label: 'En proceso', icon: Truck },
+      { key: 'pagado', label: 'Pagado al destinatario', icon: CheckCircle2 },
+    ]);
 const rank = { pendiente: 0, recibido: 0, en_proceso: 1, pagado: 2 };
 
 export default function Tracking() {
@@ -60,7 +66,7 @@ export default function Tracking() {
 
             {/* Timeline */}
             <div className="space-y-6">
-              {STEPS.map((s, i) => {
+              {stepsFor(transfer).map((s, i) => {
                 const done = i <= currentRank;
                 const active = i === currentRank;
                 const Icon = s.icon;
@@ -68,7 +74,7 @@ export default function Tracking() {
                   <div key={s.key} className="flex items-start gap-4">
                     <div className="flex flex-col items-center">
                       <div className={`w-10 h-10 rounded-full flex items-center justify-center ${done ? 'bg-[#00B37E] text-white' : 'bg-[#F0F3F8] text-[#9AA7BD]'}`}><Icon size={18} /></div>
-                      {i < STEPS.length - 1 && <div className={`w-0.5 h-8 ${i < currentRank ? 'bg-[#00B37E]' : 'bg-[#E4E9F2]'}`} />}
+                      {i < 2 && <div className={`w-0.5 h-8 ${i < currentRank ? 'bg-[#00B37E]' : 'bg-[#E4E9F2]'}`} />}
                     </div>
                     <div className="pt-2">
                       <p className={`font-semibold ${done ? 'text-[#0A2540]' : 'text-[#9AA7BD]'}`}>{s.label}</p>

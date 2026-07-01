@@ -452,3 +452,11 @@ export const paymentMethods = [
   { id: 'mercadopago', label: 'Pago en línea', desc: 'Tarjeta o saldo Mercado Pago', icon: 'CreditCard' },
   { id: 'efectivo', label: 'Pago en efectivo', desc: 'Paga en puntos autorizados', icon: 'Banknote' },
 ];
+
+// Sucursales de pago en efectivo (Chile) — Envíalo
+export const seedSucursales = [
+  { name: 'Envíalo Centro', address: 'Ahumada 312, Santiago Centro', hours: 'Lun a Sáb · 9:00–19:00' },
+  { name: 'Envíalo Providencia', address: 'Av. Providencia 1456, Providencia', hours: 'Lun a Sáb · 9:00–20:00' },
+  { name: 'Envíalo Estación Central', address: 'Alameda 3211, Estación Central', hours: 'Lun a Dom · 10:00–20:00' },
+  { name: 'Envíalo Maipú', address: 'Av. 5 de Abril 789, Maipú', hours: 'Lun a Sáb · 9:30–19:00' },
+];

@@ -157,7 +157,7 @@ export const AppProvider = ({ children }) => {
     const t = {
       id: `ENV-${Date.now().toString().slice(-8)}`,
       ...data,
-      status: 'en_proceso',
+      status: data.status || 'en_proceso',
       createdAt: new Date().toISOString(),
     };
     setTransfers((prev) => [t, ...prev]);
