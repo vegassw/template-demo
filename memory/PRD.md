@@ -56,6 +56,14 @@ Repositorio React con DOS plantillas 100% mockeadas (sin backend real, estado en
 - ✅ Selector raíz ahora con 3 tarjetas (AURUM, PATITAS, ENVÍALO).
 - Estado transferencias en localStorage `envialo_transfers_v1`.
 
+## Actualización (2026-07-01) — Envíalo: pago en efectivo con referencia
+- ✅ Pago en efectivo: al confirmar NO se completa el envío; genera **número de pago (PAG-XXXXXXXX)** + lista de **sucursales** donde pagar; el envío queda en estado **pendiente** hasta que el admin lo confirma (cambia a "en proceso").
+- ✅ Pagos online (Transferencia / Mercado Pago) → estado "en proceso" directo.
+- ✅ Botón dinámico: "Generar pago en efectivo" vs "Pagar $X".
+- ✅ Seguimiento con timeline dinámico ("Pago pendiente en sucursal" para efectivo).
+- ✅ Admin: cambio de estado pendiente→en_proceso→pagado persiste en localStorage.
+- ✅ Probado por testing agent (iteration_3.json): 100%, sin regresiones en AURUM/PATITAS.
+
 ## Backlog / Próximos pasos (P2)
 - Vista de "Reservas" en algún panel para PATITAS (las bookings ya se guardan en localStorage).
 - Panel admin para la tienda de PATITAS (hoy los productos de mascotas son estáticos del seed).
